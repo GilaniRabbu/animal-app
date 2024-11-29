@@ -1,19 +1,28 @@
 import React from "react";
+import { Category } from "@/utils/types"; // Import shared types
 
-export default function CategoryList({ categories, onSelectCategory }) {
+interface CategoryListProps {
+  categories: Category[];
+  onSelectCategory: (category: Category | null) => void; // Allow selecting a category or clearing the selection
+}
+
+const CategoryList: React.FC<CategoryListProps> = ({
+  categories,
+  onSelectCategory,
+}) => {
   return (
     <div>
       <ul className="flex gap-2 justify-start flex-wrap">
         <button
-          className="cursor-pointer px-6 py-2 rounded-full font-medium border text-green-500 border-green-600 hover:bg-green-100 hover:text-green-600 transition-all duration-300"
-          onClick={() => onSelectCategory(null)} // Assuming null or an empty selection shows all animals
+          className="cursor-pointer px-6 py-2 rounded-full font-medium border text-green-500 border-green-600 hover:border-red-700 hover:text-red-700 transition-all duration-300"
+          onClick={() => onSelectCategory(null)} // Show all animals when "All" is selected
         >
           All
         </button>
         {categories.map((category) => (
           <li
             key={category._id}
-            className="cursor-pointer px-6 py-2 rounded-full font-medium border text-green-500 border-green-600 hover:bg-green-100 hover:text-green-600 transition-all duration-300"
+            className="cursor-pointer px-6 py-2 rounded-full font-medium border text-green-500 border-green-600 hover:border-red-700 hover:text-red-700 transition-all duration-300"
             onClick={() => onSelectCategory(category)}
           >
             {category.name}
@@ -22,4 +31,6 @@ export default function CategoryList({ categories, onSelectCategory }) {
       </ul>
     </div>
   );
-}
+};
+
+export default CategoryList;

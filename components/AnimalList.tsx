@@ -1,6 +1,11 @@
 import React from "react";
+import { Animal } from "@/utils/types"; // Import shared type
 
-const AnimalList = ({ animals }) => {
+interface AnimalListProps {
+  animals: Animal[];
+}
+
+const AnimalList: React.FC<AnimalListProps> = ({ animals }) => {
   return (
     <div className="flex gap-4 flex-wrap">
       {animals.map((animal) => (
@@ -13,7 +18,7 @@ const AnimalList = ({ animals }) => {
             />
           </div>
           <h3 className="font-medium text-center uppercase">{animal.name}</h3>
-          <p className="text-sm text-gray-500">{animal.category.name}</p>
+          {/* <p className="text-sm text-gray-500">{animal.category}</p> */}
         </div>
       ))}
     </div>

@@ -1,20 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Category, Animal } from "@/utils/types"; // Import shared types
 import CategoryList from "@/components/CategoryList";
 import AnimalList from "@/components/AnimalList";
 import AddCategoryForm from "@/components/AddCategoryForm";
 import AddAnimalForm from "@/components/AddAnimalForm";
-
-interface Category {
-  _id: string;
-  name: string;
-}
-
-interface Animal {
-  name: string;
-  category: string; // Assuming this refers to the `_id` of a Category
-}
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -24,7 +15,6 @@ export default function Home() {
   );
 
   useEffect(() => {
-    // Load data from localStorage on component mount
     const savedCategories: Category[] = JSON.parse(
       localStorage.getItem("categories") || "[]"
     );
@@ -36,10 +26,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Save data to localStorage whenever it changes
     localStorage.setItem("categories", JSON.stringify(categories));
     localStorage.setItem("animals", JSON.stringify(animals));
   }, [categories, animals]);
+
+  const handleAddCategory = (category: Category) => {
+    setCategories((prevCategories) => [...prevCategories, category]);
+  };
+
+  const handleAddAnimal = (animal: Animal) => {
+    setAnimals((prevAnimals) => [...prevAnimals, animal]);
+  };
 
   return (
     <div className="container mx-auto px-4 py-20">
@@ -51,12 +48,10 @@ export default function Home() {
           />
         </div>
         <div className="w-1/4">
-          <AddCategoryForm
-            onAddCategory={(category: Category[]) => setCategories(category)}
-          />
+          <AddCategoryForm onAddCategory={handleAddCategory} />
           <AddAnimalForm
             categories={categories}
-            onAddAnimal={(animal: Animal[]) => setAnimals(animal)}
+            onAddAnimal={handleAddAnimal}
           />
         </div>
       </div>

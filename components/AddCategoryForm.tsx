@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
+import { Category } from "@/utils/types"; // Import the shared type for categories
 
 interface AddCategoryFormProps {
-  onAddCategory: (category: any) => void;
+  onAddCategory: (category: Category) => void; // Use the `Category` type
 }
 
 export default function AddCategoryForm({
@@ -14,7 +15,7 @@ export default function AddCategoryForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (name.trim()) {
-      onAddCategory({ _id: Date.now().toString(), name });
+      onAddCategory({ _id: Date.now().toString(), name }); // Create a new category object
       setName("");
       setIsModalOpen(false);
     }

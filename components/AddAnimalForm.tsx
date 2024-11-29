@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
+import { Category, Animal } from "@/utils/types"; // Import shared types
 
 interface AddAnimalFormProps {
-  categories: any[];
-  onAddAnimal: (animal: any) => void;
+  categories: Category[]; // Use the `Category` type
+  onAddAnimal: (animal: Animal) => void; // Use the `Animal` type
 }
 
 export default function AddAnimalForm({
@@ -12,7 +13,7 @@ export default function AddAnimalForm({
 }: AddAnimalFormProps) {
   const [name, setName] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<File | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,7 +25,7 @@ export default function AddAnimalForm({
           _id: Date.now().toString(),
           name,
           category: categoryId,
-          imageUrl: reader.result,
+          imageUrl: reader.result as string, // FileReader result is a string
         });
       };
       reader.readAsDataURL(image);
@@ -69,7 +70,11 @@ export default function AddAnimalForm({
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                setImage(e.target.files[0]);
+              }
+            }}
             className="w-full"
           />
           <button
