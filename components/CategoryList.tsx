@@ -12,9 +12,9 @@ const CategoryList: React.FC<CategoryListProps> = ({
 }) => {
   return (
     <div>
-      <ul className="flex gap-2 justify-start flex-wrap">
+      <ul className="flex gap-3 justify-start flex-wrap">
         <button
-          className="cursor-pointer px-6 py-2 rounded-full font-medium border text-green-500 border-green-600 hover:border-red-700 hover:text-red-700 transition-all duration-300"
+          className="cursor-pointer glow-green px-6 py-2 rounded-full font-medium border text-red-700 border-red-700 hover:border-green-600 hover:text-green-500 transition-all duration-300"
           onClick={() => onSelectCategory(null)} // Show all animals when "All" is selected
         >
           All
@@ -22,7 +22,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
         {categories.map((category) => (
           <li
             key={category._id}
-            className="cursor-pointer px-6 py-2 rounded-full font-medium border text-green-500 border-green-600 hover:border-red-700 hover:text-red-700 transition-all duration-300"
+            className="cursor-pointer glow-red px-6 py-2 rounded-full font-medium border text-green-500 border-green-600 hover:border-red-700 hover:text-red-700 transition-all duration-300"
             onClick={() => onSelectCategory(category)}
           >
             {category.name}

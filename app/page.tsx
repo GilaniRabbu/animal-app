@@ -40,14 +40,14 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 py-20">
-      <div className="flex gap-2 justify-between flex-wrap">
+      <div className="flex gap-3 flex-wrap justify-between">
         <div>
           <CategoryList
             categories={categories}
             onSelectCategory={setSelectedCategory}
           />
         </div>
-        <div className="w-1/4">
+        <div>
           <AddCategoryForm onAddCategory={handleAddCategory} />
           <AddAnimalForm
             categories={categories}

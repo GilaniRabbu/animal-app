@@ -25,20 +25,20 @@ export default function AddCategoryForm({
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="cursor-pointer px-6 py-2 mb-2 rounded-full font-medium border text-white border-white"
+        className="cursor-pointer glow-white px-6 py-2 mb-3 rounded-full font-medium border text-white border-white transition-all duration-300"
       >
         Add Category
       </button>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <form onSubmit={handleSubmit} className="px-2 py-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <h2>Add Category</h2>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="New category name"
-            className="border p-2 my-5 rounded outline-none w-full block"
+            className="border p-2 rounded outline-none w-full block"
           />
           <button
             type="submit"

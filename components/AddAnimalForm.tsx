@@ -40,7 +40,7 @@ export default function AddAnimalForm({
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="cursor-pointer ml-2 px-6 py-2 rounded-full font-medium border text-white border-white"
+        className="cursor-pointer glow-white ml-3 px-6 py-2 rounded-full font-medium border text-white border-white transition-all duration-300"
       >
         Add Animal
       </button>
